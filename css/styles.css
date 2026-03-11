@@ -1,0 +1,33 @@
+body {
+    background-color: black;
+}
+
+.contenedor {
+    background-color: rgb(8, 58, 8);
+    color: white;
+    width: 300px;
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    margin: auto;
+}
+
+
+.botones {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;          
+}
+
+button {
+    cursor: pointer;
+    padding: 8px 12px;
+    border-radius: 10px;
+}
+
+button:hover {
+    background-color: black;
+    color: white;
+}
