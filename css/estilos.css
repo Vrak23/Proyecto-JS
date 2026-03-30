@@ -1,0 +1,76 @@
+/*variables css - PLAETA DE COLORES*/
+/*selector padre*/
+:root {
+    --colorPrimario:#eb2700;
+    --colorSecundario:#000000;
+    --colorSombras:#282D31;
+    --colorTitulos:#282D31;
+    --colorParrafos:#53575A;
+    --colorFondo:#FCFCFC;
+    --colorBordes:#DFE0E0;
+    --zIndexNomal: 1;
+    --zIndexToolTip: 10;
+    --zIndexFixed: 100;
+    --zIndexModal: 1000;
+    --zIndexPopUp: 10000;
+}
+
+/*SELECTOR UNIVERSAL*/
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: gray;
+}
+
+.title {
+    color: var(--colorPrimario);
+}
+
+.container {
+    background-color: white !important;
+    padding: 30px !important;
+    margin: 5% auto !important; /* Centrado horizontal */
+    width: 95% !important;
+    max-width: 500px !important;
+    border: 5px solid var(--colorSecundario) !important;
+    border-radius: 15px !important;
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.4) !important;
+    display: block !important;
+}
+
+.formulario {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+/* Asegura que los botones y links se estiren al ancho de los inputs */
+.formulario button, 
+.formulario a,
+.button {
+    width: 100%;
+    display: block;
+}
+
+button, .button {
+    padding: 10px;
+    background-color: var(--colorPrimario);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 18px;
+    text-align: center;
+}
+
+button:hover, .button:hover {
+    background-color: var(--colorSecundario);
+    color: var(--colorPrimario);
+}
