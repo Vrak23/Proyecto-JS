@@ -4,15 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Matrícula</title>
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/estilos.css">
 </head>
+
 <body>
     <article class="container">
         <form id="formLogin" class="formulario">
             <h2 class="title">Iniciar Sesión</h2>
+
             <input type="text" id="logUsuario" placeholder="N° DNI o Usuario" required>
             <input type="password" id="logPassword" placeholder="Contraseña asignada" required>
+
             <button type="submit">Ingresar</button>
             <p id="mensajeLogin" class="mensaje"></p>
         </form>
@@ -25,5 +29,9 @@
             </a>
         </div>
     </article>
+
+    <!-- 🔥 IMPORTANTE -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="js/login.js"></script>
 </body>
 </html>

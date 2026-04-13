@@ -1,5 +1,6 @@
-/*variables css - PLAETA DE COLORES*/
-/*selector padre*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700;900&display=swap');
+
+/* VARIABLES CSS - PALETA DE COLORES */
 :root {
     --colorPrimario:#eb2700;
     --colorSecundario:#000000;
@@ -8,32 +9,44 @@
     --colorParrafos:#53575A;
     --colorFondo:#FCFCFC;
     --colorBordes:#DFE0E0;
+
     --zIndexNomal: 1;
     --zIndexToolTip: 10;
     --zIndexFixed: 100;
     --zIndexModal: 1000;
     --zIndexPopUp: 10000;
+
+    /* FUENTES */
+    --fontPrincipal: 'Poppins', sans-serif;
+
+    --pesoParrafo: 400;
+    --pesoParrafoMedio: 500;
+
+    --pesoTitulo: 700;
+    --pesoTituloFuerte: 900;
 }
 
-/*SELECTOR UNIVERSAL*/
+/* RESET */
 *{
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
 
+/* BODY CON FONDO */
 body {
-    background-color: gray;
+    font-family: var(--fontPrincipal);
+    background-image: url('../img/login.png'); /* asegúrate de tener esta imagen */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
-.title {
-    color: var(--colorPrimario);
-}
-
+/* CONTENEDOR */
 .container {
-    background-color: white !important;
+    background-color: rgba(255, 255, 255, 0.95) !important;
     padding: 30px !important;
-    margin: 5% auto !important; /* Centrado horizontal */
+    margin: 5% auto !important;
     width: 95% !important;
     max-width: 500px !important;
     border: 5px solid var(--colorSecundario) !important;
@@ -42,6 +55,7 @@ body {
     display: block !important;
 }
 
+/* FORMULARIO */
 .formulario {
     display: flex;
     flex-direction: column;
@@ -50,15 +64,25 @@ body {
     margin: 0 auto;
 }
 
-/* Asegura que los botones y links se estiren al ancho de los inputs */
-.formulario button, 
-.formulario a,
-.button {
-    width: 100%;
-    display: block;
+/* TÍTULOS */
+.title {
+    color: var(--colorPrimario);
+    font-weight: var(--pesoTitulo);
 }
 
+/* INPUTS */
+input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--colorBordes);
+    border-radius: 5px;
+    font-family: var(--fontPrincipal);
+    font-weight: var(--pesoParrafo);
+}
+
+/* BOTONES */
 button, .button {
+    width: 100%;
     padding: 10px;
     background-color: var(--colorPrimario);
     color: white;
@@ -68,9 +92,25 @@ button, .button {
     transition: all 0.3s ease;
     font-size: 18px;
     text-align: center;
+    font-family: var(--fontPrincipal);
+    font-weight: var(--pesoParrafoMedio);
 }
 
 button:hover, .button:hover {
     background-color: var(--colorSecundario);
     color: var(--colorPrimario);
+}
+
+/* MENSAJES */
+.mensaje {
+    font-weight: var(--pesoParrafo);
+    color: var(--colorParrafos);
+}
+
+/* ASEGURA QUE TODO SE ALINEE */
+.formulario button, 
+.formulario a,
+.button {
+    width: 100%;
+    display: block;
 }
