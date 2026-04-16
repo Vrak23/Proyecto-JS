@@ -1,62 +1,83 @@
 :root {
-    --colorPrimario:#eb2700;
-    --colorSecundario:#000000;
-    --colorSombras:#282D31;
-    --colorTitulos:#282D31;
-    --colorParrafos:#53575A;
-    --colorFondo:#FCFCFC;
-    --colorBordes:#DFE0E0;
+    --colorPrimario: #eb2700;
+    --colorSecundario: #000000;
+    --colorSombras: rgba(15, 23, 42, 0.15);
+    --colorTitulos: #1f2937;
+    --colorParrafos: #4b5563;
+    --colorFondo: #f8fafc;
+    --colorBordes: #d1d5db;
 }
 
-*{
-    padding: 0;
-    margin: 0;
+* {
     box-sizing: border-box;
 }
 
 body {
-    background-color: var(--colorFondo);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    min-height: 100vh;
+    background-image: url('../img/login.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     margin: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+.login-wrapper {
+    min-height: 100vh;
+    padding: 24px;
 }
 
 .login-card {
-    background-color: yellow;
-    padding: 2em;
-    border-radius: 1em;
-    box-shadow: 0 0 6px var(--colorSombras);
-    max-width: 600px;
-    width: 100%; /* Asegura que se vea bien en móviles */
-}
-
-/* Copiado de la lógica de tu amigo */
-input {
     width: 100%;
-    padding: .8em;
-    margin-bottom: 1em; /* Esta es la clave de la separación */
-    border-radius: .5em;
-    font-size: 1em;
-    border: none;
-    outline: none;
+    max-width: 520px;
+    background-color: rgba(255, 255, 255, 0.93);
+    border-radius: 20px;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    box-shadow: 0 24px 60px rgba(15, 23, 42, 0.14);
+    padding: 34px;
 }
 
-.boton {
-    width: 100%;
-    padding: .7em;
-    background-color: var(--colorPrimario);
-    font-size: 1em;
-    font-family: 'Poppins';
-    font-weight: 400;
-    border: none;
-    color: white;
-    border-radius: .5em;
-    cursor: pointer;
-    transition: background-color 0.3s ease-in-out; 
+.login-card h1,
+.login-card h2,
+.login-card p {
+    color: var(--colorTitulos);
 }
 
-.boton:hover {
-    background-color: var(--colorSecundario);
+.login-card .formulario {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.login-card .form-control {
+    border-radius: 0.75rem;
+    border: 1px solid var(--colorBordes);
+    padding: 14px 16px;
+    background: #f8fafc;
+}
+
+.login-card .form-control:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 0.15rem rgba(59, 130, 246, 0.15);
+}
+
+.login-card .btn-primary {
+    border-radius: 0.75rem;
+    padding: 14px 16px;
+}
+
+.login-card .btn-outline-secondary {
+    border-radius: 0.75rem;
+    padding: 10px 16px;
+}
+
+#mensajeLogin,
+#mensajeRegistro {
+    min-height: 18px;
+}
+
+@media (max-width: 576px) {
+    .login-card {
+        padding: 24px;
+    }
 }

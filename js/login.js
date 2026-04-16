@@ -14,7 +14,6 @@ $(document).ready(function () {
     // LOGIN
     if (usuario === "Admin" && password === "admin") {
 
-      // 🔐 GUARDAR SESIÓN
       sessionStorage.setItem("logueado", "true");
 
       $("#mensajeLogin").text("Acceso correcto");
