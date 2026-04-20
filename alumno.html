@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estudiantes - SENATI</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style-dashboard.css">
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+    <h4>SENATI</h4>
+    <hr>
+    <nav class="nav flex-column">
+        <ul class="sidebar-nav">
+            <li class="nav-item">
+                <a href="dashboard.html"><i class="fas fa-table-cells-large me-2"></i>Dashboard</a>
+            </li>
+            <li class="nav-item active">
+                <a href="alumno.html"><i class="fas fa-user-graduate me-2"></i>Estudiantes</a>
+            </li>
+            <li class="nav-item">
+                <a href="aula.html"><i class="fas fa-school me-2"></i>Aulas</a>
+            </li>
+            <li class="nav-item">
+                <a href="cursos.html"><i class="fas fa-book me-2"></i>Cursos</a>
+            </li>
+            <li class="nav-item">
+                <a href="matriculas.html"><i class="fas fa-file-signature me-2"></i>Matriculas</a>
+            </li>
+            <li class="nav-item">
+                <a href="pagos.html"><i class="fas fa-credit-card me-2"></i>Pagos</a>
+            </li>
+            <li class="nav-item">
+                <a href="configuracion.html"><i class="fas fa-cog me-2"></i>Configuracion</a>
+            </li>
+        </ul>
+    </nav>
+    <div class="sidebar-footer">
+        <button class="btn-logout" onclick="cerrarSesion()">
+            <i class="fas fa-sign-out-alt"></i> Cerrar sesión
+        </button>
+    </div>
+</div>
+
+<!-- CONTENIDO PRINCIPAL -->
+<div class="main-content">
+    <div class="container-fluid px-0">
+
+        <div class="d-flex justify-content-between align-items-start mb-4">
+            <div>
+                <h2 style="font-size:18px;font-weight:500;color:#1a1f2e;margin:0 0 2px;">Estudiantes</h2>
+                <p style="font-size:12px;color:#9ca3af;margin:0;">Mantenimiento de estudiantes</p>
+            </div>
+            <button class="btn btn-primary btn-sm"
+                    data-bs-toggle="modal"
+                    data-bs-target="#modalAlumno"
+                    onclick="limpiarForm()">
+                <i class="fas fa-plus me-1"></i> Nuevo
+            </button>
+        </div>
+
+        <!-- TABLA -->
+        <div class="table-container">
+            <table class="table table-hover align-middle">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombres</th>
+                        <th>Apellidos</th>
+                        <th>F. Nacimiento</th>
+                        <th>Celular</th>
+                        <th>Correo</th>
+                        <th>Estado</th>
+                        <th class="text-center">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="lista_alumnos"></tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+
+<!-- MODAL -->
+<div class="modal fade" id="modalAlumno" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" style="font-size:15px;">Alumno</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="formAlumno">
+                    <input type="hidden" id="id_alumno" name="id_alumno">
+                    <div class="row g-3">
+                        <div class="col-md-4">
+                            <label class="form-label">DNI</label>
+                            <input type="text" id="dni" name="dni_alumno" class="form-control" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Nombres</label>
+                            <input type="text" id="nombres" name="nombres" class="form-control" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Apellidos</label>
+                            <input type="text" id="apellidos" name="apellidos" class="form-control" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Fecha Nacimiento</label>
+                            <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" class="form-control" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Edad</label>
+                            <input type="number" id="edad" name="edad" class="form-control" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Género</label>
+                            <select id="genero" name="genero" class="form-control">
+                                <option value="M">Masculino</option>
+                                <option value="F">Femenino</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Dirección</label>
+                            <input type="text" id="direccion" name="direccion" class="form-control" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Correo</label>
+                            <input type="email" id="correo" name="correo" class="form-control" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Celular</label>
+                            <input type="text" id="celular" name="celular" class="form-control" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Estado</label>
+                            <select id="estado" name="estado" class="form-control">
+                                <option value="ACTIVO">ACTIVO</option>
+                                <option value="INACTIVO">INACTIVO</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Apoderado</label>
+                            <input type="text" id="nombre_apoderado" name="nombre_apoderado" class="form-control" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Celular Apoderado</label>
+                            <input type="text" id="celular_apoderado" name="celular_apoderado" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="alert alert-info mt-3" style="font-size:13px;">
+                        Usuario y contraseña se generan automáticamente con el DNI.
+                    </div>
+                    <div class="modal-footer mt-2 px-0">
+                        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-success btn-sm">
+                            <i class="fas fa-save me-1"></i> Guardar
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/alumno.js"></script>
+
+<script>
+    verificarLogin();
+</script>
+
+</body>
+</html>

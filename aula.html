@@ -1,94 +1,155 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<title>Aula</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aulas - SENATI</title>
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="css/style-dashboard.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style-dashboard.css">
 </head>
-
 <body>
 
+<!-- SIDEBAR -->
 <div class="sidebar">
-    <h4 class="text-center mb-4">SENATI</h4>
+    <h4>SENATI</h4>
     <hr>
     <nav class="nav flex-column">
-        <a class="nav-link text-white" href="dashboard.html">Alumnos</a>
-        <a class="nav-link text-white active" href="aula.html">Aula</a>
-        <a class="nav-link text-white" href="cursos.html">Cursos</a>
-
-        <div class="mt-5">
-            <button class="btn btn-danger w-100" onclick="cerrarSesion()">Cerrar sesión</button>
-        </div>
+        <ul class="sidebar-nav">
+            <li class="nav-item">
+                <a href="dashboard.html"><i class="fas fa-table-cells-large me-2"></i>Dashboard</a>
+            </li>
+            <li class="nav-item">
+                <a href="alumno.html"><i class="fas fa-user-graduate me-2"></i>Estudiantes</a>
+            </li>
+            <li class="nav-item active">
+                <a href="aula.html"><i class="fas fa-school me-2"></i>Aulas</a>
+            </li>
+            <li class="nav-item">
+                <a href="cursos.html"><i class="fas fa-book me-2"></i>Cursos</a>
+            </li>
+            <li class="nav-item">
+                <a href="matriculas.html"><i class="fas fa-file-signature me-2"></i>Matriculas</a>
+            </li>
+            <li class="nav-item">
+                <a href="pagos.html"><i class="fas fa-credit-card me-2"></i>Pagos</a>
+            </li>
+            <li class="nav-item">
+                <a href="configuracion.html"><i class="fas fa-cog me-2"></i>Configuracion</a>
+            </li>
+        </ul>
     </nav>
+    <div class="sidebar-footer">
+        <button class="btn-logout" onclick="cerrarSesion()">
+            <i class="fas fa-sign-out-alt"></i> Cerrar sesión
+        </button>
+    </div>
 </div>
 
+<!-- CONTENIDO -->
 <div class="main-content">
-<div class="container-fluid">
+    <div class="container-fluid px-0">
 
-<div class="d-flex justify-content-between mb-4">
-    <h2>Mantenimiento Aula</h2>
+        <div class="d-flex justify-content-between align-items-start mb-4">
+            <div>
+                <h2 style="font-size:18px;font-weight:500;color:#1a1f2e;margin:0 0 2px;">Aulas</h2>
+                <p style="font-size:12px;color:#9ca3af;margin:0;">Mantenimiento de aulas</p>
+            </div>
+            <button class="btn btn-primary btn-sm"
+                    data-bs-toggle="modal"
+                    data-bs-target="#modalAula"
+                    onclick="limpiarFormAula()">
+                <i class="fas fa-plus me-1"></i> Nueva Aula
+            </button>
+        </div>
 
-    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAula">
-        Nuevo
-    </button>
-</div>
+        <!-- TABLA -->
+        <div class="table-container">
+            <table class="table table-hover align-middle">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nivel</th>
+                        <th>Grado</th>
+                        <th>Sección</th>
+                        <th>Vacantes Totales</th>
+                        <th>Disponibles</th>
+                        <th class="text-center">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="lista_aula"></tbody>
+            </table>
+        </div>
 
-<div class="table-container">
-<table class="table">
-<thead class="table-dark">
-<tr>
-<th>ID</th>
-<th>Nivel</th>
-<th>Grado</th>
-<th>Sección</th>
-<th>Vacantes</th>
-<th>Disponibles</th>
-<th>Acciones</th>
-</tr>
-</thead>
-
-<tbody id="lista_aula"></tbody>
-
-</table>
-</div>
-
-</div>
+    </div>
 </div>
 
 <!-- MODAL -->
-<div class="modal fade" id="modalAula">
-<div class="modal-dialog">
-<div class="modal-content">
+<div class="modal fade" id="modalAula" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
 
-<div class="modal-header">
-<h5>Aula</h5>
-</div>
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalAulaLabel">Nueva Aula</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
 
-<div class="modal-body">
+            <div class="modal-body">
+                <form id="formAula">
+                    <input type="hidden" id="id_aula" name="id_aula">
 
-<form id="formAula">
+                    <div class="mb-3">
+                        <label class="form-label">Nivel</label>
+                        <select name="nivel" class="form-control">
+                            <option value="">-- Seleccionar --</option>
+                            <option value="Inicial">Inicial</option>
+                            <option value="Primaria">Primaria</option>
+                            <option value="Secundaria">Secundaria</option>
+                        </select>
+                    </div>
 
-<input type="hidden" id="id_aula" name="id_aula">
+                    <div class="mb-3">
+                        <label class="form-label">Grado</label>
+                        <input type="number" name="grado" class="form-control" placeholder="Ej: 3" min="1" max="6" required>
+                    </div>
 
-<input type="text" name="nivel" class="form-control mb-2" placeholder="Nivel">
-<input type="number" name="grado" class="form-control mb-2" placeholder="Grado">
-<input type="text" name="seccion" class="form-control mb-2" placeholder="Sección">
-<input type="number" name="vacantes_totales" class="form-control mb-2" placeholder="Vacantes totales">
-<input type="number" name="vacantes_disponibles" class="form-control mb-2" placeholder="Vacantes disponibles">
+                    <div class="mb-3">
+                        <label class="form-label">Sección</label>
+                        <input type="text" name="seccion" class="form-control" placeholder="Ej: A" maxlength="1" required>
+                    </div>
 
-<button class="btn btn-success w-100">Guardar</button>
+                    <div class="row g-3">
+                        <div class="col-6">
+                            <label class="form-label">Vacantes Totales</label>
+                            <input type="number" name="vacantes_totales" class="form-control" placeholder="Ej: 30" min="1" required>
+                        </div>
+                        <div class="col-6">
+                            <label class="form-label">Vacantes Disponibles</label>
+                            <input type="number" name="vacantes_disponibles" class="form-control" placeholder="Ej: 10" min="0" required>
+                        </div>
+                    </div>
 
-</form>
+                    <div class="modal-footer mt-3 px-0">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-success">
+                            <i class="fas fa-save me-1"></i> Guardar
+                        </button>
+                    </div>
+                </form>
+            </div>
 
-</div>
-</div>
-</div>
+        </div>
+    </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/auth.js"></script>
 <script src="js/aula.js"></script>
+
+<script>
+    verificarLogin();
+</script>
 
 </body>
 </html>
